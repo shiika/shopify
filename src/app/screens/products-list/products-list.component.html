@@ -1,0 +1,38 @@
+<div class="px-[75px] py-[60px]">
+    <div class="flex justify-between items-center mb-3">
+        <h1 class="text-3xl mb-5 font-medium">Products</h1>
+        <div class="flex items-center gap-3">
+            <div class="flex flex-col gap-1 justify-between">
+                <label for="search">Search</label>
+                <input type="text" class="border rounded px-3 py-2" placeholder="Search" [formControl]="searchControl">
+            </div>
+            <div class="flex flex-col gap-1 justify-between">
+                <label for="category">Category</label>
+                <p-dropdown [options]="categories" optionLabel="name" optionValue="value" (onChange)="category.set($event.value)" placeholder="Select a Category" />
+            </div>
+            <div class="flex flex-col gap-1 justify-between">
+                <label for="category">Sort</label>
+                <p-dropdown [options]="sortItems" optionLabel="name" optionValue="value" (onChange)="sortBy.set($event.value)" placeholder="Sort by..." />
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-3 gap-3">
+        <ng-container *ngIf="!isLoading; else productsView">
+            <app-product *ngFor="let product of products" [product]="product" ></app-product>
+        </ng-container>
+
+        <ng-template #productsView>
+            <ngx-skeleton-loader [theme]="{ height: '400px', width: '100%' }"></ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ height: '400px', width: '100%' }"></ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ height: '400px', width: '100%' }"></ngx-skeleton-loader>
+        </ng-template>
+    </div>
+
+    <ng-container *ngIf="totalCount > pageSize">
+        <p-paginator 
+        (onPageChange)="onPageChange($event)" 
+        [first]="pageNo()"
+        [rows]="pageSize" 
+        [totalRecords]="totalCount"  />
+    </ng-container>
+</div>
