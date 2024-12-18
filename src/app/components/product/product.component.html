@@ -1,0 +1,15 @@
+<div class="flex flex-col shadow border-opacity-10 rounded-lg bg-white p-5 h-full cursor-pointer">
+    <div>
+        <img [src]="product.thumbnail" alt="product image" class="mx-auto h-[260px] mb-[10px] object-contain">
+    </div>
+    <div class="flex items-center mb-4 mt-auto">
+        <div class="flex flex-col">
+            <div class="flex items-center justify-between">
+                <span class="block font-semibold mb-1">{{ product.title }}</span>
+                <span class="font-medium text-xl ml-auto">${{ product.price }}</span>
+            </div>
+            <span class="text-zinc-500 text-sm block mt-auto">{{ product.description }}</span>
+        </div>
+    </div>
+    <button type="button" [routerLink]="['/products', product.id]" class="text-zinc-800 border hover:bg-zinc-800 hover:text-white transition-colors duration-500 border-zinc-800 mt-auto rounded-lg px-4 py-2">More details</button>
+</div>

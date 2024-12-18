@@ -1,0 +1,12 @@
+<div class="flex items-center gap-[10px]">
+    <div class="flex flex-1">
+        <div *ngFor="let star of starRating; let i = index">
+            <ng-container *ngIf="rating >= i + 1; else inActiveStar">
+                <img width="20" src="../../../../assets/images/active-star.png" alt="">
+            </ng-container>
+            <ng-template #inActiveStar>
+                <img width="20" src="../../../../assets/images/inactive-star.png" alt="">
+            </ng-template>
+        </div>
+    </div>
+</div>

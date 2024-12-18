@@ -1,0 +1,32 @@
+<div class="px-[75px] py-[60px]">
+<ng-container *ngIf="!isLoading; else loading">
+        <div class="flex justify-start gap-8">
+            <div class="bg-zinc-100">
+                <img [src]="product.images[0]" width="500" alt="product image">
+            </div>
+            <div class="flex flex-col flex-1">
+                <h1 class="text-3xl mb-5 font-medium">{{ product.title }}</h1>
+                <app-rating [rating]="product.rating"></app-rating>
+                <div class="font-medium text-4xl mt-[36px]">
+                    ${{ product.price }}
+                    <span class="text-zinc-400 text-sm">Taxes included</span>
+                </div>
+                <div class="flex flex-col gap-2 mt-6">
+                    <h3 class="text-lg font-medium">Description</h3>
+                    <p class="text-zinc-500 text-sm block mt-auto">{{ product.description }}</p>
+                </div>
+                <button type="button" class="text-zinc-800 border hover:bg-zinc-800 hover:text-white transition-colors duration-500 border-zinc-800 mt-auto rounded-lg px-4 py-2">Add to Cart</button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #loading>
+        <div class="flex justify-start gap-8">
+            <ngx-skeleton-loader [theme]="{ height: '500px', width: '500px' }"></ngx-skeleton-loader>
+            <div class="flex flex-col flex-1">
+                <ngx-skeleton-loader [theme]="{ height: '50px', width: '600px' }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ height: '50px', width: '500px' }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ height: '50px', width: '550px' }"></ngx-skeleton-loader>
+            </div>
+        </div>
+    </ng-template>
+</div>
